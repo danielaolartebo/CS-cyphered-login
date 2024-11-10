@@ -294,3 +294,109 @@ footer a {
     color: #3c97bf;
     text-decoration: none;
 }
+
+.user-dashboard {
+	font-family: 'Arial', sans-serif;
+	max-width: 500px;
+	margin: 0 auto;
+	padding: 20px;
+	background-color: #f4f7f6;
+	border-radius: 8px;
+  }
+  
+  .top-bar {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+  }
+  
+  .page-title {
+	font-size: 24px;
+	color: #000; /* Titles in black */
+	text-align: left;
+	flex-grow: 1;
+  }
+  
+  .logout-button {
+	background-color: #ff4d4d;
+	color: white;
+	padding: 10px;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	font-size: 16px;
+  }
+  
+  .logout-button:hover {
+	background-color: #e60000;
+  }
+  
+  .last-login {
+	margin: 20px 0;
+	font-size: 16px;
+  }
+  
+  .last-login-label {
+	font-weight: bold;
+	color: #000;
+  }
+  
+  .last-login-time {
+	font-size: 16px;
+	color: #555;
+  }
+  
+  .separator {
+	margin: 20px 0;
+	border: 0;
+	border-top: 1px solid #ccc;
+  }
+  
+  .change-password-section {
+	margin-top: 20px;
+  }
+  
+  .form-title {
+	font-size: 22px;
+	color: #000; /* Titles in black */
+	margin-bottom: 10px;
+  }
+  
+  .change-password-form {
+	display: flex;
+	flex-direction: column;
+  }
+  
+  .form-group {
+	margin-bottom: 15px;
+  }
+  
+  .input-label {
+	font-size: 16px;
+	color: #333;
+	margin-bottom: 5px;
+  }
+  
+  .input-field {
+	padding: 8px;
+	font-size: 16px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	color: black;
+  }
+  
+  .submit-button {
+	background-color: #007bff;
+	color: white;
+	padding: 10px;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	font-size: 16px;
+  }
+  
+  .submit-button:hover {
+	background-color: #0056b3;
+  }
+  
+  

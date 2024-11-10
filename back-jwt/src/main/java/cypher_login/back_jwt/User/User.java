@@ -9,6 +9,8 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Collection;
 import java.util.List;
 
@@ -19,16 +21,23 @@ import java.util.List;
 @Entity
 @Table(name="users", uniqueConstraints={@UniqueConstraint(columnNames = {"username"})})
 public class User implements UserDetails {
+
     @Id
     @GeneratedValue
-    Integer id;
+    private Integer id;
+
     @Column(nullable = false)
-    String username;
-    String firstname;
-    String lastname;
-    String password;
-    @Enumerated(EnumType.ORDINAL)
-    Role role;
+    private String username;
+
+    private String firstname;
+    private String lastname;
+    private String password;
+
+    @Enumerated(EnumType.STRING)
+    private Role role;
+
+    // New field to store last login date and time
+    private LocalDateTime lastLogin;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -54,4 +63,12 @@ public class User implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
+    // Get last login time
+    public String getLastLogin() {
+        return lastLogin != null ? lastLogin.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")) : "No login record";
+    }
+
 }
+
+

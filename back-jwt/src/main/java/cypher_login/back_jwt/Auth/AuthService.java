@@ -30,18 +30,22 @@ public class AuthService {
     }
 
     public AuthResponse register(RegisterRequest request) {
+        // Get the role from the request (default to USER if not provided or invalid)
+        Role role = Role.fromString(request.getRole());  // Role is expected to be a string (admin or user)
+
         User user = User.builder()
                 .username(request.getUsername())
                 .password(passwordEncoder.encode(request.getPassword()))
                 .firstname(request.getFirstname())
                 .lastname(request.getLastname())
-                .role(Role.USER)
+                .role(role)  // Set the role dynamically
                 .build();
 
         userRepository.save(user);
 
         return AuthResponse.builder()
                 .token(jwtService.getToken(user))
-            .build();
+                .build();
     }
 }
+
