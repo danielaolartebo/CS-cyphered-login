@@ -19,7 +19,7 @@ run:mvn-spring-boot
 
 ## ***Hecho con*** 🛠️
 
-*El sistema tiene un backend desarrollado en **Java** utilizando **Spring Boot** y un frontend en **Typescript** con **Next.js**.*
+*El sistema tiene un backend desarrollado en **Java** utilizando **Spring Boot**, un frontend en **Typescript** con **Next.js** y una base de datos alojada en **PostgreSQL**.*
 
 ***Backend:***
 - ***Controladores**: Los controladores gestionan las solicitudes HTTP y definen las rutas de la API. Incluyen métodos para obtener y eliminar usuarios, realizar inicio de sesión, registrar nuevos usuarios y cambiar contraseñas.*
@@ -49,7 +49,7 @@ run:mvn-spring-boot
 
 2️⃣ *Abrir el proyecto en tu IDE (debe de tener instalado Java 17)*
 
-5️⃣ *Correr el proyecto en el IDE*
+3️⃣ *Correr el proyecto en el IDE*
 
 ## ***Versionamiento*** 📌
 
