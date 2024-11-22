@@ -14,7 +14,7 @@ npm run dev
 *Back-end (Java Springboot):*
 
 ```powershell
-run:mvn-spring-boot    
+mvn spring-boot:run   
 ```
 
 ## ***Hecho con*** 🛠️
