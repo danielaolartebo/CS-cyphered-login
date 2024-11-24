@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import AdminView from "./AdminView";
 import UserView from "./UserView";
+import { jwtDecode } from "jwt-decode";
 
 export default function Home() {
   const [firstname, setFirstname] = useState("");
@@ -31,8 +32,8 @@ export default function Home() {
     }
 
     return () => {
-      if (signUpButton) signUpButton.removeEventListener("click", () => {});
-      if (signInButton) signInButton.removeEventListener("click", () => {});
+      if (signUpButton) signUpButton.removeEventListener("click", () => { });
+      if (signInButton) signInButton.removeEventListener("click", () => { });
     };
   }, []);
 
@@ -47,6 +48,10 @@ export default function Home() {
         role: "user",
       });
       alert("Registration successful!");
+      setFirstname("");
+      setLastname("");
+      setUsername("");
+      setPassword("");
       console.log(response);
     } catch (error) {
       console.error("Registration failed:", error);
@@ -61,21 +66,26 @@ export default function Home() {
         username: loginUsername,
         password: loginPassword,
       });
-  
+
       const token = response.data.token;
       setAuthToken(token);
       localStorage.setItem("authToken", token);
-  
-      // Assuming the token contains user info like role, decode it
-      const decodedToken = JSON.parse(atob(token.split('.')[1])); // Decode the token to get the payload
-      const userRole = decodedToken.role;  // Extract the role from the decoded token
-  
-      alert("Login successful!");
-  
+      localStorage.setItem("username", loginUsername);
+      localStorage.setItem("role", loginUsername);
+
+      // Decode the token
+      const decodedToken: any = jwtDecode(token);
+      const userRole = decodedToken.role;
+      localStorage.setItem("role", userRole); // Extract the role
+
       if (userRole === "ADMIN") {
+        setLoginUsername("");
+        setLoginPassword("");
         setView("admin");
         alert("Login successful!");
       } else {
+        setLoginUsername("");
+        setLoginPassword("");
         setView("user");
         alert("Login successful!");
       }
@@ -84,7 +94,7 @@ export default function Home() {
       alert("Login failed!");
     }
   };
-  
+
 
   return (
     <>

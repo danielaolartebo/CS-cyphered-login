@@ -399,4 +399,16 @@ footer a {
 	background-color: #0056b3;
   }
   
-  
+  .ul{
+	color: #333;
+	font-size: 14px;
+	text-decoration: none;
+	margin: 15px 0;
+  }
+
+  .li{
+	color: #333;
+	font-size: 14px;
+	text-decoration: none;
+	margin: 15px 0;
+  }

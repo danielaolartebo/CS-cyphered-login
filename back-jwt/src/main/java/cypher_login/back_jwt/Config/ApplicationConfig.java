@@ -26,7 +26,9 @@ public class ApplicationConfig implements WebMvcConfigurer {
         registry.addMapping("/**")
                 .allowedOrigins("http://localhost:3000")
                 .allowedMethods("GET", "POST", "PUT", "DELETE")
-                .allowedHeaders("*");
+                .allowedHeaders("*")
+                .allowCredentials(true); // Allow cookies or authorization headers;
+
     }
 
     @Bean

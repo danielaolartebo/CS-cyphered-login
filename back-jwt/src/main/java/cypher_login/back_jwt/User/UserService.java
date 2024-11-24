@@ -1,5 +1,6 @@
 package cypher_login.back_jwt.User;
 
+import cypher_login.back_jwt.utils.PasswordUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -30,16 +31,16 @@ public class UserService {
                 .collect(Collectors.toList());
     }
 
-    public String deleteUserById(Integer id) {
-        Optional<User> userOpt = userRepository.findById(id);
+    public String deleteUserByUsername(String username) {
+        Optional<User> userOpt = userRepository.findByUsername(username);
         if (userOpt.isPresent()) {
             // Check if the user is admin before allowing deletion
             User user = userOpt.get();
             if (user.getRole() == Role.ADMIN) {
                 return "Cannot delete the admin user.";
             }
-            userRepository.deleteById(id);
-            return "User deleted successfully with id: " + id;
+            userRepository.deleteById(user.getId());
+            return "User deleted successfully with id: " + user.getId();
         }
         return "User not found";
     }
@@ -49,9 +50,15 @@ public class UserService {
         if (userOpt.isPresent()) {
             User user = userOpt.get();
             // Set an empty password (effectively "blank")
-            user.setPassword(passwordEncoder.encode(""));
+            if (user.getRole() == Role.ADMIN) {
+                return "Cannot reset admin password.";
+            }
+            String salt = PasswordUtil.generateSalt(); // Gen salt for password hashing
+            String hashedPassword = PasswordUtil.hashPassword("", salt);// hash the password
+            user.setSalt(salt);
+            user.setPassword(hashedPassword);
             userRepository.save(user);
-            return "Password reset successfully for user: " + username;
+            return "Password reset successfully for user: " + user.getUsername();
         }
         return "User not found";
     }
@@ -66,7 +73,10 @@ public class UserService {
         Optional<User> userOpt = userRepository.findByUsername(username);
         if (userOpt.isPresent()) {
             User user = userOpt.get();
-            user.setPassword(passwordEncoder.encode(newPassword));
+            String salt = PasswordUtil.generateSalt(); // Gen salt for password hashing
+            String hashedPassword = PasswordUtil.hashPassword(newPassword, salt); // hash the password
+            user.setSalt(salt);
+            user.setPassword(hashedPassword);
             userRepository.save(user);
             return "Password changed successfully.";
         }
