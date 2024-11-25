@@ -32,6 +32,9 @@ mvn spring-boot:run
 ***Roles y Permisos**:*
 *El sistema está diseñado con dos interfaces de usuario específicas, una para administradores y otra para usuarios comunes, cada una con permisos y funcionalidades adaptadas a su rol.*
 
+## ***¿Por qué utilizamos Spring Boot y JWT?*** 
+*Spring Boot y JWT (JSON Web Tokens) son una combinación ideal para ofrecer seguridad moderna, eficiente y escalable en aplicaciones. JWT permite la autenticación sin estado al enviar tokens firmados en los encabezados de las solicitudes, lo que elimina la necesidad de gestionar sesiones en el servidor, reduciendo vulnerabilidades como el secuestro de sesiones y los ataques CSRF. Además, Spring Boot, junto con Spring Security, facilita la implementación de filtros personalizados para validar tokens, gestionar roles y permisos, y garantizar la integridad de la información. Esta arquitectura mejora el rendimiento al ser liviana y escalable, y permite una autorización granular mediante los claims de los tokens.*
+
 <p align="left">
     <a href="https://code.visualstudio.com/" target="_blank"> <img src="https://raw.githubusercontent.com/devicons/devicon/2ae2a900d2f041da66e950e4d48052658d850630/icons/vscode/vscode-original.svg" height="60" width = "60"></a>
     <a href="https://spring.io/projects/spring-boot/" target="_blank"> <img src="https://raw.githubusercontent.com/tandpfun/skill-icons/65dea6c4eaca7da319e552c09f4cf5a9a8dab2c8/icons/Spring-Dark.svg" height="60" width = "60"></a>
